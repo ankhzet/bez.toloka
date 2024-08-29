@@ -637,7 +637,7 @@
 	        this.background = this.COLORS[state];
 	    }
 	    hide() {
-	        this.state(StateBadge.IDDLE);
+	        this.state(StateBadge.IDLE);
 	        super.hide();
 	    }
 	}

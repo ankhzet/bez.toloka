@@ -1,0 +1,59 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended",
+        "plugin:workspaces/recommended",
+        "plugin:jest/recommended"
+    ],
+    "plugins": [
+        "@typescript-eslint",
+        "workspaces",
+        "react",
+        "react-hooks",
+        "jest",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true,
+            "classes": true
+        },
+        "sourceType": "module"
+    },
+    "globals": {
+        "__DEV__": true
+    },
+    "rules": {
+        "no-console": "warn",
+        "linebreak-style": ["error", "unix"],
+        "react/no-children-prop": "warn",
+        "no-useless-escape": "warn",
+        "prettier/prettier": "error",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "off",
+        "react/jsx-boolean-value": ["error", "never"],
+        "react/jsx-handler-names": "warn",
+        "react/require-default-props": "off",
+        "react/jsx-fragments": ["warn", "syntax"],
+        "react/jsx-curly-brace-presence": ["error", "never"],
+        "react/jsx-pascal-case": "warn",
+        "react/jsx-child-element-spacing": "warn",
+        "react/prop-types": "off",
+        "@typescript-eslint/no-empty-function": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}

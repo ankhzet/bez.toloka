@@ -1,0 +1,47 @@
+diff --git a/config/paths.js b/config/paths.js
+index 67ba927fc8062bbbebee55dcc175c807fa8b3671..2771e9b5881294a1e0a05780e28edda9d6f938ec 100644
+--- a/config/paths.js
++++ b/config/paths.js
+@@ -29,6 +29,17 @@ const publicUrlOrPath = getPublicUrlOrPath(
+   process.env.PUBLIC_URL
+ );
+
++const baseUrl = (() => {
++    for (const url of ['tsconfig.json', 'tsconfig.paths.json', 'jsconfig.json']) {
++        try {
++            return require(resolveApp(url)).compilerOptions.baseUrl;
++        } catch (e) {
++        }
++    }
++
++    return 'src';
++})();
++
+ const buildPath = process.env.BUILD_PATH || 'build';
+
+ const moduleFileExtensions = [
+@@ -67,7 +78,7 @@ module.exports = {
+   appHtml: resolveApp('public/index.html'),
+   appIndexJs: resolveModule(resolveApp, 'src/index'),
+   appPackageJson: resolveApp('package.json'),
+-  appSrc: resolveApp('src'),
++  appSrc: resolveApp(baseUrl),
+   appTsConfig: resolveApp('tsconfig.json'),
+   appJsConfig: resolveApp('jsconfig.json'),
+   yarnLockFile: resolveApp('yarn.lock'),
+@@ -93,1 +104,1 @@ module.exports = {
+-  appSrc: resolveApp('src'),
++  appSrc: resolveApp(baseUrl),
+diff --git a/scripts/utils/verifyTypeScriptSetup.js b/scripts/utils/verifyTypeScriptSetup.js
+index 949f34ab7d259f8a20053074f2cfbd4d0db432c6..1b2bd9da66908104cd86b3dec8e128717869e370 100644
+--- a/scripts/utils/verifyTypeScriptSetup.js
++++ b/scripts/utils/verifyTypeScriptSetup.js
+@@ -156,7 +156,7 @@ function verifyTypeScriptSetup() {
+           : 'react',
+       reason: 'to support the new JSX transform in React 17',
+     },
+-    paths: { value: undefined, reason: 'aliased imports are not supported' },
++    // paths: { value: undefined, reason: 'aliased imports are not supported' },
+   };
+
+   const formatDiagnosticHost = {
